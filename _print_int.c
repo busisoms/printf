@@ -2,23 +2,12 @@
 
 /**
  * speci_d - prints numbers
- * @num: interger to be printed
+ * @num: integer to be printed
  * Return: number of characters printed
  */
-
 int speci_d(int num)
 {
-	int temp;
 	int count = 0;
-	int i = 0;
-	char *numbers;
-
-	temp = num;
-	while (temp != 0)
-	{
-		temp /= 10;
-		++count;
-	}
 
 	if (num < 0)
 	{
@@ -34,28 +23,14 @@ int speci_d(int num)
 	}
 	else
 	{
-		numbers = malloc(sizeof(char) * (count + 1));
-		if (numbers == NULL)
+		while (num > 0)
 		{
-			return (-1);
-		}
-
-		i = 0;
-		temp = num;
-
-		while (temp > 0)
-		{
-			numbers[i++] = temp % 10 + '0';
-			temp /= 10;
-		}
-
-		while ( --i >= 0)
-		{
-			_putchar(numbers[i]);
+			_putchar(num % 10 + '0');
+			num /= 10;
 			count++;
 		}
-		free(numbers);
 	}
+
 	return (count);
 }
 
@@ -80,6 +55,8 @@ int _print_int(char specifier, va_list args)
 			break;
 
 		case 'i':
+			num = va_arg(args, int);
+			result = speci_d(num);
 			break;
 		default:
 			break;

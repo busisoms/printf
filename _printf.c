@@ -10,12 +10,13 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
-	int state = 0;
-	int i = 0;
-
+	int count = 0, state = 0, i = 0;
 
 	va_start(args, format);
+	if (format == NULL)
+	{
+		return (-1);
+	}
 
 	while (format[i] != '\0')
 	{

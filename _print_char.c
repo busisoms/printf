@@ -2,7 +2,7 @@
 
 /**
  * _print_char - handles the character conversion specifiers
- * @specifiers: specifer to work with
+ * @specifier: specifer to work with
  * @args: arguments passed
  */
 
@@ -19,7 +19,7 @@ void _print_char(char specifier, va_list args)
 			break;
 		case 's':
 			str = va_arg(args, char *);
-			while(*str)
+			while (*str)
 			{
 				_putchar(*str++);
 			}
