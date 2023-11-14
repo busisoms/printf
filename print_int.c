@@ -5,7 +5,7 @@
  * @num: integer to be printed
  * Return: number of characters printed
  */
-int print_num(int num)
+int print_num(long int num)
 {
 	int count = 0;
 	int temp;
@@ -56,10 +56,10 @@ int print_num(int num)
 
 int print_int(va_list args)
 {
-	int num, result;
+	long int num;
 
-	num = va_arg(args, int);
-	result = print_num(num);
-	return (result);
+	num = va_arg(args,long int);
+
+	return (print_num(num));
 }
 
