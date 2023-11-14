@@ -19,7 +19,7 @@ struct format
 	format_func f;
 };
 
-typedef struct format format_t
+typedef struct format format_t;
 
 int _printf(const char *format, ...);
 int is_valid(char a);
