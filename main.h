@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 /**
- * format_t - struct for selecting format specifiers
+ * struct format - struct for selecting format specifiers
  * @f: pointer to helper functions
  * @specifier: character to pick functions
  *
@@ -13,11 +13,13 @@
 
 typedef int (*format_func)(va_list);
 
-typedef struct format_t
+struct format
 {
 	char specifier;
 	format_func f;
-}format_t;
+};
+
+typedef struct format format_t
 
 int _printf(const char *format, ...);
 int is_valid(char a);
