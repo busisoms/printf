@@ -10,45 +10,42 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0, state = 0, i = 0;
+	int count = 0, i = 0;
+	unsigned long int j;
+	format_t types[] = {{'c', print_char}, {'s', print_str},
+		{'d', print_int}, {'i', print_int}, {'%', print_percent};
 
 	va_start(args, format);
 	if (format == NULL)
 	{
 		return (-1);
 	}
-
 	while (format[i] != '\0')
 	{
-		if (state == 0)
+		if (format[i] == '%')
 		{
-			if (format[i] == '%')
+			if (format[i + 1] != '\0' && is_valid(format[i + 1]))
 			{
-				state = 1;
-			}
-			else
-			{
-				_putchar(format[i]);
-				count++;
+				j = 0;
+				while (j < (sizeof(types) / sizeof(types[0])))
+				{
+					if (format[i + 1] == types[j].specifier)
+					{
+						count += types[j].f(args);
+						i++;
+						break;
+					}
+					j++;
+				}
 			}
 		}
-		else if (state == 1)
+		else
 		{
-			if (format[i] == 'c' || format[i] == 's')
-			{
-				_print_char(format[i], args);
-				state = 0;
-			}
-			else if (format[i] == 'd' || format[i] == 'i')
-			{
-				count += _print_int(format[i], args);
-				state = 0;
-			}
+			_putchar(format[i]);
+			count++;
 		}
 		i++;
 	}
 	va_end(args);
 	return (count);
 }
-
-

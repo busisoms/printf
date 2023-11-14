@@ -1,13 +1,14 @@
 #include "main.h"
 
 /**
- * speci_d - prints numbers
+ * print_num - prints numbers
  * @num: integer to be printed
  * Return: number of characters printed
  */
-int speci_d(int num)
+int print_num(int num)
 {
 	int count = 0;
+	int temp;
 
 	if (num < 0)
 	{
@@ -23,10 +24,20 @@ int speci_d(int num)
 	}
 	else
 	{
+		int rev_num = 0;
+
 		while (num > 0)
 		{
-			_putchar(num % 10 + '0');
+			temp = num % 10;
+			rev_num = rev_num * 10 + temp;
 			num /= 10;
+		}
+
+		while (rev_num > 0)
+		{
+			temp = rev_num % 10;
+			_putchar(temp + '0');
+			rev_num /= 10;
 			count++;
 		}
 	}
@@ -35,33 +46,20 @@ int speci_d(int num)
 }
 
 
+
 /**
- * _print_int - handles integer conversion specifiers
- * @specifier: specifier to work with
+ * print_int - handles integer conversion specifiers
  * @args: arguments passed
  *
  *Return: number of characters printed
  */
 
-int _print_int(char specifier, va_list args)
+int print_int(va_list args)
 {
 	int num, result;
 
-	switch (specifier)
-	{
-		case 'd':
-			num = va_arg(args, int);
-			result = speci_d(num);
-			break;
-
-		case 'i':
-			num = va_arg(args, int);
-			result = speci_d(num);
-			break;
-		default:
-			break;
-
-	}
+	num = va_arg(args, int);
+	result = print_num(num);
 	return (result);
 }
 
