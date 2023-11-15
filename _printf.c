@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	int count = 0, i = 0;
 	unsigned long int j;
 	format_t types[] = {{'c', print_char}, {'s', print_str},
-		{'d', print_int}, {'i', print_int}, {'%', print_percent}};
+	{'d', print_int}, {'i', print_int}, {'%', print_percent}, {'b', print_binary}};
 
 	va_start(args, format);
 	if (format == NULL)

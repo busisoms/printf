@@ -9,7 +9,7 @@
 
 int is_valid(char a)
 {
-	char specifiers[] = {'c', 's', 'i', 'd', '%'};
+	char specifiers[] = {'c', 's', 'i', 'd', '%', 'b'};
 	unsigned long int i;
 
 	for (i = 0; i < (sizeof(specifiers) / sizeof(specifiers[0])); i++)
